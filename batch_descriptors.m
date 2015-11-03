@@ -38,6 +38,7 @@ end
 descriptors_struct = struct();
 descriptors_struct.classes = classes;
 descriptors_struct.descriptors = descriptors;
+descriptors_struct.parameters = parameters;
 
 end
 

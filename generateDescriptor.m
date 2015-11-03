@@ -5,7 +5,8 @@ images{end+1} = img;
 
 descriptor = [];
 for layerIndex = 1:length(p.filter.layerScale)
-    scale = 1/p.filter.layerScale(layerIndex);
+    scale = p.filter.layerScale(layerIndex);
+    sigma = p.filter.layerSigma(layerIndex);
     newImages = cell(length(images) * length(p.filter.angles),1);
 %     fprintf('Number of images in layer: %i\n',length(newImages))
     for imageIndex = 1:length(images)
@@ -13,7 +14,7 @@ for layerIndex = 1:length(p.filter.layerScale)
         for angleIndex = 1:length(p.filter.angles)
             angle = p.filter.angles(angleIndex);
             
-            imgFiltered = morletFilter(image, angle, p.filter.sigma);
+            imgFiltered = morletFilter(image, angle, sigma);
             img_like = imgFiltered .* conj(imgFiltered);
             
             features = extractFeatures(img_like, p);

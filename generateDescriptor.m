@@ -3,10 +3,11 @@ function descriptor = generateDescriptor(img, p)
 images = cell(0);
 images{end+1} = img;
 
-descriptor = [];
+features = extractFeatures(img, p);
+descriptor = features(:);
 for layerIndex = 1:p.filter.layers    
     newImages = cell(length(images),length(p.filter.angles),length(p.filter.sigmas));
-%     fprintf('Number of images in layer: %i\n',length(newImages))
+%     fprintf('Number of images in layer: %i\n',numel(newImages))
     for imageIndex = 1:length(images)
         image = images{imageIndex};
         for sigmaIndex = 1:length(p.filter.sigmas)
@@ -18,7 +19,6 @@ for layerIndex = 1:p.filter.layers
                 img_like = imgFiltered .* conj(imgFiltered);
 
                 features = extractFeatures(img_like, p);
-
                 descriptor = [descriptor; features(:)];
 
                 newImages{imageIndex,angleIndex,sigmaIndex} = img_like;

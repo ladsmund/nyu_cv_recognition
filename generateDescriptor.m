@@ -16,7 +16,7 @@ for layerIndex = 1:p.filter.layers
                 angle = p.filter.angles(angleIndex);
 
                 imgFiltered = morletFilter(image, angle, sigma);
-                img_like = imgFiltered .* conj(imgFiltered);
+                img_like = sqrt(imgFiltered .* conj(imgFiltered));
 
                 features = extractFeatures(img_like, p);
                 descriptor = [descriptor; features(:)];

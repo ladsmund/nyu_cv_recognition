@@ -3,9 +3,11 @@ input_path = '~/workspace/nyu_cv_recognition_data/train/';
 output_path = '~/workspace/nyu_cv_recognition_data/output/';
 [~,~] = mkdir(output_path);
 
+sigma_parameteres = {[1;6;13],[1;2;6]};
 
 for sub_division = [1,2,4]
-    for sigmas = [1,2,6]'
+    for sigma_indx = 1:length(sigma_parameteres)
+        sigmas = sigma_parameteres{sigma_indx};
         
         str_sigmas = ['sigmas' sprintf('-%.0f',sigmas)];
         str_sub_div = ['subdiv' sprintf('-%.0f',sub_division)];

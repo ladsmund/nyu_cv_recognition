@@ -1,6 +1,7 @@
 function classifier = create_classifier(data, labels, classifier_parameters)
 
 L = classifier_parameters.L; 
+L = min(L, size(data,2));
 
 
 data_face = data(labels == 1,:);
@@ -36,8 +37,9 @@ faces = get_descriptor(data_face);
 nonfaces = get_descriptor(data_nonface);
 
 % Train SVM
-svmStruct = svmtrain([faces;nonfaces], labels);
-% svmStruct = svmtrain([faces;nonfaces], classes,'ShowPlot',true);
+% svmStruct = svmtrain([faces;nonfaces], labels);
+svmStruct = svmtrain([faces;nonfaces], labels,'ShowPlot',classifier_parameters.ShowSVMPlot);
+
 classifier = @(D) svmclassify(svmStruct, get_descriptor(D));
    
 end

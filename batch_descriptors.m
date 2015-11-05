@@ -28,7 +28,7 @@ for c = 1:length(classes)
         image_path = [input_path class '/' image_name];
         
         img = double(imread(image_path));
-        descriptor{i} = generateDescriptor(img, parameters);                
+        descriptor{i} = generate_descriptor(img, parameters);                
     end
         
     descriptors{c} = cat(2,descriptor{:});  

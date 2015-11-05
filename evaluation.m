@@ -12,7 +12,7 @@ data_file_name = '*.mat';
 input_folder = '~/workspace/nyu_cv_recognition_data/output_train/';
     output_dir = '~/workspace/nyu_cv_recognition_data/evaluations/';
 data_files = dir([input_folder data_file_name]);
-for i = 1:length(data_files)
+parfor i = 1:length(data_files)
     data_file_name = data_files(i).name;    
     input_path = [input_folder data_file_name]    
     
